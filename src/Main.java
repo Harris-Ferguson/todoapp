@@ -13,6 +13,8 @@ public class Main {
             System.out.println("Select an operation");
             System.out.print("1. Add A TODO");
             System.out.print("2. List all TODOS");
+            System.out.print("3. List all completed TODOS");
+            System.out.print("3. List all uncompleted TODOS");
             // TODO ADD THE REST LOL
             Scanner scanner = new Scanner(System.in);
             int selection = Integer.parseInt(scanner.nextLine());
@@ -66,9 +68,28 @@ public class Main {
                         false
                 );
                 Main.todos.add(newTodo);
+                for (Todo todo : todos) {
+                    System.out.println(todo.getDescription() + "Due At" + todo.getDueDate() +"Created On" + todo.getDueDate());
+                }
             }
             if (selection == 2) {
-                System.out.println(todos);
+                for (Todo todo : todos) {
+                    System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
+                }
+            }
+            if(selection == 3) {
+                for (Todo todo : todos) {
+                    if(todo.isCompleted()){
+                        System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
+                    }
+                }
+            }
+            if(selection == 3) {
+                for (Todo todo : todos) {
+                    if(!todo.isCompleted()){
+                        System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
+                    }
+                }
             }
         }
     }

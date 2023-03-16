@@ -20,4 +20,20 @@ public class Todo {
                 ", completed=" + completed +
                 '}';
     }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public String getDueDate() {
+        return dueDate;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
 }
