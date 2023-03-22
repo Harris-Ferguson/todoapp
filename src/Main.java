@@ -68,12 +68,12 @@ public class Main {
                 );
                 Main.list.add(newTodo);
                 for (Todo todo : list) {
-                    System.out.println(todo.getDescription() + "Due At" + todo.getDueDate() +"Created On" + todo.getDueDate());
+                    System.out.println(todo);
                 }
             }
             if (selection == 2) {
                 for (Todo todo : list) {
-                    System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
+                    System.out.println(todo.getDescription());
                 }
             }
             if(selection == 3) {
