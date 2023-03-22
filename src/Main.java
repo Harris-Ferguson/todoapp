@@ -68,6 +68,11 @@ public class Main {
         System.out.println(todos.getAllTodosAsAPrettyPrintableString());
     }
 
+    public static int getUserSelection() {
+        Scanner scanner = new Scanner(System.in);
+        return Integer.parseInt(scanner.nextLine());
+    }
+
     public static void main(String[] args) {
         System.out.println("Welcome to the Todo App!");
         for(;;){
@@ -75,24 +80,20 @@ public class Main {
             System.out.print("1. Add A TODO");
             System.out.print("2. List all TODOS");
             System.out.print("3. List all completed TODOS");
-            System.out.print("3. List all uncompleted TODOS");
-            System.out.println("4. Mark a TODO as completed");
-            Scanner scanner = new Scanner(System.in);
-            int selection = Integer.parseInt(scanner.nextLine());
-            if(selection == 1){
-                Main.addATodo();
-            }
-            if (selection == 2) {
-                System.out.println(todos.getAllTodosAsAPrettyPrintableString());
-            }
-            if(selection == 3) {
-                System.out.println(todos.getAllCompletedTodosAsAPrettyPrintableString());
-            }
-            if(selection == 3) {
-                System.out.println(todos.getAllIncompleteTodosAsAPrettyPrintableString());
-            }
-            if(selection == 4){
-                Main.completeATodo();
+            System.out.print("4. List all uncompleted TODOS");
+            System.out.println("5. Mark a TODO as completed");
+            UserInputChoice userInputChoice = new UserInputChoice(Main.getUserSelection());
+            switch(userInputChoice.getInputChoice()){
+                case ADD_A_TODO:
+                    Main.addATodo();
+                case LIST_ALL_TODOS:
+                    System.out.println(todos.getAllTodosAsAPrettyPrintableString());
+                case LIST_ALL_COMPLETED_TODOS:
+                    System.out.println(todos.getAllCompletedTodosAsAPrettyPrintableString());
+                case LIST_ALL_UNCOMPLETED_TODOS:
+                    System.out.println(todos.getAllIncompleteTodosAsAPrettyPrintableString());
+                case MARK_A_TODO_AS_COMPLETE:
+                    Main.completeATodo();
             }
         }
     }
