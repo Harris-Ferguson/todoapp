@@ -8,6 +8,13 @@ public class Main {
 
     static private Todos todos = new Todos();
 
+    public static void completeATodo() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(todos.getAllIncompleteTodosAsAPrettyPrintableString());
+        System.out.println("Which incomplete by id todo would you like to mark complete?");
+        int selection = scanner.nextInt();
+        todos.completeTodo(selection);
+    }
 
     public static void addATodo() {
         Scanner scanner = new Scanner(System.in);
@@ -69,6 +76,7 @@ public class Main {
             System.out.print("2. List all TODOS");
             System.out.print("3. List all completed TODOS");
             System.out.print("3. List all uncompleted TODOS");
+            System.out.println("4. Mark a TODO as completed");
             Scanner scanner = new Scanner(System.in);
             int selection = Integer.parseInt(scanner.nextLine());
             if(selection == 1){
@@ -82,6 +90,9 @@ public class Main {
             }
             if(selection == 3) {
                 System.out.println(todos.getAllIncompleteTodosAsAPrettyPrintableString());
+            }
+            if(selection == 4){
+                Main.completeATodo();
             }
         }
     }
