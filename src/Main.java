@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static private ArrayList<Todo> todos = new ArrayList<>();
+    static private ArrayList<Todo> list = new ArrayList<>();
     public static void main(String[] args) {
         System.out.println("Welcome to the Todo App!");
         for(;;){
@@ -15,7 +15,6 @@ public class Main {
             System.out.print("2. List all TODOS");
             System.out.print("3. List all completed TODOS");
             System.out.print("3. List all uncompleted TODOS");
-            // TODO ADD THE REST LOL
             Scanner scanner = new Scanner(System.in);
             int selection = Integer.parseInt(scanner.nextLine());
             if(selection == 1){
@@ -67,27 +66,27 @@ public class Main {
                         date.toString(),
                         false
                 );
-                Main.todos.add(newTodo);
-                for (Todo todo : todos) {
+                Main.list.add(newTodo);
+                for (Todo todo : list) {
                     System.out.println(todo.getDescription() + "Due At" + todo.getDueDate() +"Created On" + todo.getDueDate());
                 }
             }
             if (selection == 2) {
-                for (Todo todo : todos) {
+                for (Todo todo : list) {
                     System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
                 }
             }
             if(selection == 3) {
-                for (Todo todo : todos) {
+                for (Todo todo : list) {
                     if(todo.isCompleted()){
                         System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
                     }
                 }
             }
             if(selection == 3) {
-                for (Todo todo : todos) {
+                for (Todo todo : list) {
                     if(!todo.isCompleted()){
-                        System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
+                        System.out.println(todo.getDescription() + "Due at:  " + todo.getDueDate());
                     }
                 }
             }
