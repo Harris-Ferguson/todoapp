@@ -21,8 +21,6 @@ public class Main {
                 System.out.println("Input a new todo description");
                 String newTodoDescription = scanner.nextLine();
                 System.out.println("Due date? Leave blank for none");
-                // delete this
-                Date outputDate = null;
                 String[] allowed =
                         {
                                 "yyyy.MM.dd G 'at' HH:mm:ss z",
