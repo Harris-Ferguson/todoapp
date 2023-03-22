@@ -1,0 +1,7 @@
+public enum InputChoices {
+    ADD_A_TODO,
+    MARK_A_TODO_AS_COMPLETE,
+    LIST_ALL_TODOS,
+    LIST_ALL_COMPLETED_TODOS,
+    LIST_ALL_UNCOMPLETED_TODOS
+}
