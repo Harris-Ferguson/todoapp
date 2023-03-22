@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    static private ArrayList<Todo> list = new ArrayList<>();
+    static private Todos todos = new Todos();
     public static void main(String[] args) {
         System.out.println("Welcome to the Todo App!");
         for(;;){
@@ -21,8 +21,6 @@ public class Main {
                 System.out.println("Input a new todo description");
                 String newTodoDescription = scanner.nextLine();
                 System.out.println("Due date? Leave blank for none");
-                // delete this
-                Date outputDate = null;
                 String[] allowed =
                         {
                                 "yyyy.MM.dd G 'at' HH:mm:ss z",
@@ -66,29 +64,17 @@ public class Main {
                         date.toString(),
                         false
                 );
-                Main.list.add(newTodo);
-                for (Todo todo : list) {
-                    System.out.println(todo);
-                }
+                Main.todos.addTodo(newTodo);
+                System.out.println(todos.getAllTodosAsAPrettyPrintableString());
             }
             if (selection == 2) {
-                for (Todo todo : list) {
-                    System.out.println(todo.getDescription());
-                }
+                System.out.println(todos.getAllTodosAsAPrettyPrintableString());
             }
             if(selection == 3) {
-                for (Todo todo : list) {
-                    if(todo.isCompleted()){
-                        System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
-                    }
-                }
+                System.out.println(todos.getAllCompletedTodosAsAPrettyPrintableString());
             }
             if(selection == 3) {
-                for (Todo todo : list) {
-                    if(!todo.isCompleted()){
-                        System.out.println(todo.getDescription() + "Due at:  " + todo.getDueDate());
-                    }
-                }
+                System.out.println(todos.getAllIncompleteTodosAsAPrettyPrintableString());
             }
         }
     }
