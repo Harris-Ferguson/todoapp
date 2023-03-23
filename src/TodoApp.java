@@ -1,14 +1,35 @@
+import java.lang.reflect.Array;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class TodoApp {
     private ArrayList<Todo> todos;
 
     public TodoApp(ArrayList<Todo> todos) {
         this.todos = todos;
+    }
+
+    private void prettyPrintListOfTodos(List<Todo> todosToPrint)
+    {
+        for(Todo todo : todosToPrint)
+        {
+            System.out.println(todo);
+        }
+    }
+
+    private List<Todo> getCompletedTodos()
+    {
+        return todos.stream().filter(Todo::isCompleted).collect(Collectors.toList());
+    }
+    private List<Todo> getIncompleteTodos()
+    {
+        return todos.stream().filter(Predicate.not(Todo::isCompleted)).collect(Collectors.toList());
     }
 
     public void runTodoApp()
@@ -22,7 +43,7 @@ public class TodoApp {
             System.out.print("3. List all uncompleted TODOS");
             Scanner scanner = new Scanner(System.in);
             int selection = Integer.parseInt(scanner.nextLine());
-            if(selection == 1){
+            if (selection == 1){
                 System.out.println("Input a new todo description");
                 String newTodoDescription = scanner.nextLine();
                 System.out.println("Due date? Leave blank for none");
@@ -36,28 +57,16 @@ public class TodoApp {
                         false
                 );
                 todos.add(newTodo);
-                for (Todo todo : todos) {
-                    System.out.println(todo);
-                }
+                prettyPrintListOfTodos(todos);
             }
             if (selection == 2) {
-                for (Todo todo : todos) {
-                    System.out.println(todo.getDescription());
-                }
+                prettyPrintListOfTodos(todos);
             }
-            if(selection == 3) {
-                for (Todo todo : todos) {
-                    if(todo.isCompleted()){
-                        System.out.println(todo.getDescription() + "Due" + todo.getDueDate());
-                    }
-                }
+            if (selection == 3) {
+                prettyPrintListOfTodos(getCompletedTodos());
             }
-            if(selection == 3) {
-                for (Todo todo : todos) {
-                    if(!todo.isCompleted()){
-                        System.out.println(todo.getDescription() + "Due at:  " + todo.getDueDate());
-                    }
-                }
+            if (selection == 4) {
+                prettyPrintListOfTodos(getIncompleteTodos());
             }
         }
     }
